@@ -1,0 +1,13 @@
+#logo_png{
+    height: 50px;
+}
+
+.headers{
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+}
+
+.align{
+    display: flex;
+    justify-content: flex-end;
+}

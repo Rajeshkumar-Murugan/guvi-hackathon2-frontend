@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import env from 'react-dotenv'
+import Header from './components/Header';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import AddTheaters from './components/AddTheaters';
+import MoviesList from './components/MoviesList';
+import Clientdetails from './components/Clientdetails';
+import Bookshow from './components/Bookshow';
+
+
 
 function App() {
+console.log(env.API_URL)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Router>
+     
+     <Header></Header>
+     
+     <Routes>
+     <Route path='/add-theater' element={<AddTheaters/>}></Route>
+     <Route path='/' element={<MoviesList/>}></Route>
+     <Route path='/Clientdetails' element={<Clientdetails/>}></Route>
+     <Route path='/MoviesList' element={<MoviesList/>}></Route>
+     <Route path='/Bookshow' element={<Bookshow/>}></Route>
+     </Routes>
+      
+     
+      </Router>
+    
+     
+     
+    
   );
 }
 
