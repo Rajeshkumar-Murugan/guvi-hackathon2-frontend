@@ -94,7 +94,7 @@ let getData = async()=>{
 
 
   <div className="col-md-6">
-    <label for="thName" className="form-label">Theater Name</label>
+    <label htmlFor="thName" className="form-label">Theater Name</label>
     <input id="thName" name="thName" type="text"
                   className="form-control" placeholder='Enter Theater Name'
                   onChange={formik.handleChange}
@@ -104,7 +104,7 @@ let getData = async()=>{
   </div>
 
   <div className="col-md-4">
-    <label for="thDate" className="form-label">Date</label>
+    <label htmlFor="thDate" className="form-label">Date</label>
         
     <input id="thDate" name="thDate" type="date"
                   className="form-control" placeholder='Enter Date'
@@ -115,7 +115,7 @@ let getData = async()=>{
   
   </div>
   <div className="col">
-    <label for="thTime" className="form-label">Timings</label>
+    <label htmlFor="thTime" className="form-label">Timings</label>
            
     <input id="thTime" name="thTime" type="time"
                   className="form-control" placeholder='Enter Timings'
@@ -125,7 +125,7 @@ let getData = async()=>{
 
   </div>
   <div className="col">
-    <label for="thSeat" className="form-label">Total seat</label>
+    <label htmlFor="thSeat" className="form-label">Total seat</label>
            
     <input id="thSeat" name="thSeat" type="number"
                   className="form-control" placeholder='Enter Total seat'

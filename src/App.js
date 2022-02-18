@@ -22,7 +22,8 @@ console.log(env.API_URL)
      <Route path='/' element={<MoviesList/>}></Route>
      <Route path='/Clientdetails' element={<Clientdetails/>}></Route>
      <Route path='/MoviesList' element={<MoviesList/>}></Route>
-     <Route path='/Bookshow' element={<Bookshow/>}></Route>
+     {/* <Route path='/Bookshow' element={<Bookshow/>}></Route> */}
+     <Route path='/Bookshow/:id' element={<Bookshow/>}></Route>
      </Routes>
       
      

@@ -47,13 +47,13 @@ let save = async(val)=>{
     
     <div>      
         <div className="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Signup page</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 className="modal-title" id="exampleModalLabel">Signup page</h5>
+        {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
         </div>
         <div className="modal-body" id="act-add">
          <form  onSubmit={formik.handleSubmit}>
          <div className="mb-3">
-            <label for="recipient-name" className="col-form-label">Name:</label>
+            <label htmlFor="recipient-name" className="col-form-label">Name:</label>
             <input id="name" name="name" type="text"
                   className="form-control" placeholder='Enter Name'
                   onChange={formik.handleChange}
@@ -62,7 +62,7 @@ let save = async(val)=>{
             </div>
 
             <div className="mb-3">
-            <label for="recipient-name" className="col-form-label">Email ID:</label>
+            <label htmlFor="recipient-name" className="col-form-label">Email ID:</label>
             <input id="email" name="email" type="email"
                   className="form-control" placeholder='Enter Email'
                   onChange={formik.handleChange}
@@ -71,7 +71,7 @@ let save = async(val)=>{
             </div>
 
             <div className="mb-3">
-            <label for="recipient-name" className="col-form-label">Phone Number</label>
+            <label htmlFor="recipient-name" className="col-form-label">Phone Number</label>
             <input id="phone" name="phone" type="mobile"
                   className="form-control" placeholder='Enter phone'
                   onChange={formik.handleChange}
@@ -80,7 +80,7 @@ let save = async(val)=>{
             </div>
 
             <div className="mb-3">
-            <label for="message-text" className="col-form-label">Password:</label>
+            <label htmlFor="message-text" className="col-form-label">Password:</label>
             <input id="password" name="password" type="text"
                   className="form-control" placeholder='Enter password'
                   onChange={formik.handleChange}

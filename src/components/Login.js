@@ -56,8 +56,8 @@ function Login() {
         </div>
         <div className="modal-body" id="login-side">
          <form onSubmit={formik.handleSubmit}>
-            <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Email ID:</label>
+            <div className="mb-3">
+            <label htmlFor="recipient-name" className="col-form-label">Email ID:</label>
             <input id="email" name="email" type="email"
                   className="form-control" placeholder='Enter Email'
                   onChange={formik.handleChange}
@@ -65,8 +65,8 @@ function Login() {
         {formik.touched.email && formik.errors.email?(<div style={{color:"red"}}>{formik.errors.email}</div>):null}
 
             </div>
-            <div class="mb-3">
-            <label for="message-text" class="col-form-label">Password:</label>
+            <div className="mb-3">
+            <label htmlFor="message-text" className="col-form-label">Password:</label>
             <input id="password" name="password" type="text"
                   className="form-control" placeholder='Enter password'
                   onChange={formik.handleChange}

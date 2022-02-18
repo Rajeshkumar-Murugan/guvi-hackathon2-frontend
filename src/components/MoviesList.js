@@ -2,7 +2,8 @@ import {React,useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
+// import Bookshow from './Bookshow';
 
 function MoviesList() {
 
@@ -24,6 +25,7 @@ function MoviesList() {
     }
   }
   
+ 
 
   return (
     <div >
@@ -33,16 +35,18 @@ function MoviesList() {
   details.map((e,i)=>{
    return<>
         
-          <div class="card" style={{ width: '18rem' }}>
-            <img src={e.movieimg} class="card-img-top" alt={e.moviename} style={{ height: '20rem' }}/>
-            <div class="card-body">
-              <h5 class="card-title">{e.thMovie}</h5>
-              <p class="card-text">{e.moviedes}</p>   
-              <Link to={"/Bookshow"}>    
-              <button type="button" class="btn btn-primary" onClick={()=>{
-              // Navigate('/Bookshow/'+e._id) 
-             }}>Book Now</button>   
-             </Link>           
+          <div className="card" style={{ width: '15rem' }}>
+            <img src={e.movieimg} className="card-img-top" alt={e.moviename} style={{ height: '15rem' }}/>
+            <div className="card-body">
+              <h5 className="card-title">{e.moviename}</h5>
+              <p className="card-text">{e.moviedes}</p>   
+              
+              <button type="button" className="btn btn-primary" 
+              onClick={()=>{
+                Navigate('/Bookshow/'+e._id) 
+               }}>
+                 Book Now</button>   
+             
                  
              </div> 
             </div>

@@ -8,7 +8,7 @@ function Menu() {
     <div>
   <div className='align'>
   <div> 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup" data-bs-whatever="@mdo">Signin</button>              
+    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup" data-bs-whatever="@mdo">Signin</button>              
      <Signin></Signin>
   </div> 
     <div>
