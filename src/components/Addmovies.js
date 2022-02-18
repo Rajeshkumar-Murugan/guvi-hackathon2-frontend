@@ -1,32 +1,46 @@
-
+import axios from 'axios';
 import {React} from 'react';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
-let movielist = []
+import env from 'react-dotenv'
+import {useNavigate} from 'react-router-dom'
 
 function Addmovies() {
     
+  let history = useNavigate()
 
     const formik = useFormik({
         initialValues:{ 
-          thMovie:'',
-          thMovieposter:'',
-          thMoviedesc:'',                  
+          moviename:'',
+          movieimg:'',
+          moviedes:'',                  
         },
         validationSchema: yup.object({
         
-        thMovie:yup.string().required('Movie Name is required'),
-        thMovieposter:yup.string().required('Movie Poster is required'),
-        thMoviedesc:yup.string().required('Movie Description is required'),
+        moviename:yup.string().required('Movie Name is required'),
+        movieimg:yup.string().required('Movie Poster is required'),
+        moviedes:yup.string().required('Movie Description is required'),
        
         }),
         onSubmit:values=>{
-          movielist.push(JSON.stringify(values, null, 2))
-          alert(movielist)
+          save(values, null, 2)
+
         }
       })
 
-
+      let save = async(val)=>{
+        try {
+          let res =  await axios.post(env.API_URL+'addmovies',val)
+            console.log(res)
+            history('/MoviesList')
+            
+          
+        } catch (error) {
+          alert("error occured please contact the developer")
+          console.log(error)
+        } 
+      }
+      
 
   return (
     <div>
@@ -36,33 +50,30 @@ function Addmovies() {
         <h2>Add Movies details</h2>
 
                 <div className="col-md-3">
-                    <label for="thMovie" className="form-label">Movie Name</label>
                     
-                    <input id="thMovie" name="thMovie" type="text"
+                    <input id="moviename" name="moviename" type="text"
                                 className="form-control" placeholder='Enter Movie Name'
                                 onChange={formik.handleChange}
-                                value={formik.values.thMovie}/>
-                        {formik.touched.thMovie && formik.errors.thMovie?(<div style={{color:"red"}}>{formik.errors.thMovie}</div>):null}
+                                value={formik.values.moviename}/>
+                        {formik.touched.moviename && formik.errors.moviename?(<div style={{color:"red"}}>{formik.errors.moviename}</div>):null}
 
                 </div>
                 <div className="col-md-3">
-                    <label for="thMovieposter" className="form-label">Movie Poster</label>
                         
-                    <input id="thMovieposter" name="thMovieposter" type="text"
+                    <input id="movieimg" name="movieimg" type="text"
                                 className="form-control" placeholder='Enter Movie Poster Link'
                                 onChange={formik.handleChange}
-                                value={formik.values.thMovieposter}/>
-                        {formik.touched.thMovieposter && formik.errors.thMovieposter?(<div style={{color:"red"}}>{formik.errors.thMovieposter}</div>):null}
+                                value={formik.values.movieimg}/>
+                        {formik.touched.movieimg && formik.errors.movieimg?(<div style={{color:"red"}}>{formik.errors.movieimg}</div>):null}
 
                 </div>
                 <div className="col-md-3">
-                    <label for="thMoviedesc" className="form-label">Movie Description</label>
                         
-                    <input id="thMoviedesc" name="thMoviedesc" type="textrea"
+                    <input id="moviedes" name="moviedes" type="textrea"
                                 className="form-control" placeholder='Enter Movie Description'
                                 onChange={formik.handleChange}
-                                value={formik.values.thMoviedesc}/>
-                        {formik.touched.thMoviedesc && formik.errors.thMoviedesc?(<div style={{color:"red"}}>{formik.errors.thMoviedesc}</div>):null}
+                                value={formik.values.moviedes}/>
+                        {formik.touched.moviedes && formik.errors.moviedes?(<div style={{color:"red"}}>{formik.errors.moviedes}</div>):null}
 
                 </div>
             

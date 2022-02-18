@@ -3,6 +3,7 @@ import {React} from 'react';
 import axios from 'axios';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
+import env from 'react-dotenv'
 
 function Login() {
   let history = useNavigate()
@@ -25,7 +26,7 @@ function Login() {
  
   let loggedin = async(val)=>{
     try {
-      let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/login',val)
+      let res =  await axios.post(env.API_URL+'users/login',val)
         if(res.data.message === "login successfully")
         {
         document.getElementById("login-side").innerHTML = `<h2>${res.data.message}</h2>`       

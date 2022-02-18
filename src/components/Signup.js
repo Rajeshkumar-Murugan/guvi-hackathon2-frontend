@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {React} from 'react';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
-
+import env from 'react-dotenv'
 
 
 function Signup() {
@@ -31,7 +31,7 @@ function Signup() {
 // Adding data using axios
 let save = async(val)=>{
   try {
-    let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/register',val)
+    let res =  await axios.post(env.API_URL+'users/register',val)
       console.log(res)
       history('/Clientdetails')
       document.getElementById("act-add").innerHTML = `<h2>${res.data.message}</h2>`

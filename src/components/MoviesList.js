@@ -17,7 +17,7 @@ function MoviesList() {
   //Fetching using Axios
   let getData = async()=>{
     try {
-      let d = await axios.get(env.API_URL)
+      let d = await axios.get(env.API_URL+'movies/')
     setDetails(d.data.data)
     } catch (error) {
       console.log(error)
@@ -34,13 +34,13 @@ function MoviesList() {
    return<>
         
           <div class="card" style={{ width: '18rem' }}>
-            <img src={e.thMovieposter} class="card-img-top" alt={e.thMovie} style={{ height: '20rem' }}/>
+            <img src={e.movieimg} class="card-img-top" alt={e.moviename} style={{ height: '20rem' }}/>
             <div class="card-body">
               <h5 class="card-title">{e.thMovie}</h5>
-              <p class="card-text">{e.thMoviedesc}</p>   
+              <p class="card-text">{e.moviedes}</p>   
               <Link to={"/Bookshow"}>    
               <button type="button" class="btn btn-primary" onClick={()=>{
-              Navigate('/Bookshow/'+e.thMovie) 
+              // Navigate('/Bookshow/'+e._id) 
              }}>Book Now</button>   
              </Link>           
                  
