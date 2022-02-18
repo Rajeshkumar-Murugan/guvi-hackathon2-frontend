@@ -43,9 +43,15 @@ let getData = async()=>{
       <td>{e.thDate}</td>
       <td>{e.thTime}</td>
       <td>{e.thSeat}</td>
+      <td>
+      <button type="button" className="btn btn-primary">Edit</button>
+      <button type="button" className="btn btn-danger">Delete</button>
+      </td>
     </tr>
-   
-  </tbody> })}
+    
+  </tbody>
+ })}
+ 
 </table>
     </div>
         </>)

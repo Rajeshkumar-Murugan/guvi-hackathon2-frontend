@@ -16,7 +16,7 @@ function AddTheaters() {
       moviename:'',
       thName:'',
       thDate:'',
-      thTime:'',
+      thTime:[],
       thSeat:'',
      
     },
@@ -37,7 +37,7 @@ let save = async(val)=>{
   try {
     let res =  await axios.post(env.API_URL,val)
       console.log(res)
-      history('/MoviesList')
+      history('/Theaterdata')
       
     
   } catch (error) {
@@ -117,7 +117,7 @@ let getData = async()=>{
   <div className="col">
     <label htmlFor="thTime" className="form-label">Timings</label>
            
-    <input id="thTime" name="thTime" type="time"
+    <input id="thTime" name="thTime" type="time" 
                   className="form-control" placeholder='Enter Timings'
                   onChange={formik.handleChange}
                   value={formik.values.thTime}/>

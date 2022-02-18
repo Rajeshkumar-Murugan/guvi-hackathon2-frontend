@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
+import '../components/Bookshow.css'
 
 function Bookshow() {
     let params = useParams()
@@ -44,7 +45,14 @@ let getData = async()=>{
               if(e.moviename == moviename)
               {
                 document.getElementById('booking').innerHTML += `
-                <button type="button" class="btn btn-outline-success">${e.thName}</button>
+                <div className='container '>
+                <div className='row'>
+                  
+                    <button type="button" class="btn btn-outline-success thdata">${e.thName}</button>
+                    <button type="button" class="btn btn-outline-success thdata">${e.thTime}</button>
+
+
+                    </div></div>
                `
               }
               

@@ -1,0 +1,6 @@
+.alignment{
+    background-color: black;
+    color: aliceblue;
+    display: flex;
+    justify-content: space-around;
+}
