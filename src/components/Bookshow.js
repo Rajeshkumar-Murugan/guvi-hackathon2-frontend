@@ -35,10 +35,21 @@ let getData = async()=>{
     }
 
 
-    let gettheater = async()=>{
+    let gettheater = async(moviename)=>{
+      document.getElementById('booking').innerHTML =''
         try {
             let res= await axios.get(env.API_URL)
-            console.log(res.data.data)          
+            let details = res.data
+            details.data.map((e)=>{
+              if(e.moviename == moviename)
+              {
+                document.getElementById('booking').innerHTML += `
+                <button type="button" class="btn btn-outline-success">${e.thName}</button>
+               `
+              }
+              
+            })
+                     
             } catch (error) {
             alert("Error occured while getting the data please contact developer")
               console.log(error)
@@ -46,12 +57,8 @@ let getData = async()=>{
       
         }
   
-let booking=()=>{
-    
-    console.log("booking is clicked")
-    document.getElementById('booking').innerHTML = `<p>${details.moviename} is Booked</p>`
-    }
 
+  
 
 return<>
 
@@ -67,7 +74,7 @@ return<>
       <div className="card-body">
         <h5 className="card-title">{details.moviename}</h5>
         <p className="card-text">{details.moviedes}</p>
-        <button type="button" class="btn btn-success" onClick={booking}>Bookshow</button>
+        <button type="button" class="btn btn-success" onClick={()=>gettheater(details.moviename)}>Book Now</button>
       </div>
     </div>
   </div>
@@ -76,7 +83,7 @@ return<>
 
     </div>
     <div id="booking">
-        Booking data
+        
     </div>
 </div>
  

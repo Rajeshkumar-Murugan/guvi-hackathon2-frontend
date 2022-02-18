@@ -9,11 +9,11 @@ function Header() {
     <div className='headers'>
         <div className='container'>
             <div className='row '>
-              <div className='col'>
+              <div className='col-sm-6'>
               <img src='https://www.pinclipart.com/picdir/big/524-5246520_upcoming-events-clip-art.png' id="logo_png"/>
               </div>
              
-              <div className='col align'>              
+              <div className='col-sm-6'>              
               <Menu></Menu>
               </div>
          

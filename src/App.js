@@ -6,6 +6,7 @@ import AddTheaters from './components/AddTheaters';
 import MoviesList from './components/MoviesList';
 import Clientdetails from './components/Clientdetails';
 import Bookshow from './components/Bookshow';
+import Theaterdata from './components/Theaterdata';
 
 
 
@@ -22,8 +23,8 @@ console.log(env.API_URL)
      <Route path='/' element={<MoviesList/>}></Route>
      <Route path='/Clientdetails' element={<Clientdetails/>}></Route>
      <Route path='/MoviesList' element={<MoviesList/>}></Route>
-     {/* <Route path='/Bookshow' element={<Bookshow/>}></Route> */}
      <Route path='/Bookshow/:id' element={<Bookshow/>}></Route>
+     <Route path='/Theaterdata' element={<Theaterdata/>}></Route>
      </Routes>
       
      

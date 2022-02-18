@@ -38,6 +38,11 @@ function Menu() {
                 <a className="nav-link text-black" href="#">Client details</a>
               </li>
               </Link>
+              <Link to="/Theaterdata">
+              <li className="nav-item">
+                <a className="nav-link text-black" href="#">Theater details</a>
+              </li>
+              </Link>
               
             </ul>
             

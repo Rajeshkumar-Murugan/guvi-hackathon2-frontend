@@ -28,26 +28,27 @@ function MoviesList() {
  
 
   return (
-    <div >
-      <div class="row">
+    <div className='container'>
+      <div class="row justify-content-around">
        {
      
   details.map((e,i)=>{
    return<>
         
-          <div className="card" style={{ width: '15rem' }}>
-            <img src={e.movieimg} className="card-img-top" alt={e.moviename} style={{ height: '15rem' }}/>
+          <div className="card " style={{ width: '15rem' }}>
+            <img src={e.movieimg} className="card-img-top" alt={e.moviename} style={{ height: '18rem', borderRadius: '5px' }}/>
             <div className="card-body">
-              <h5 className="card-title">{e.moviename}</h5>
-              <p className="card-text">{e.moviedes}</p>   
-              
+              <div className='row'>
+              <h6 className="card-title">{e.moviename}</h6>
+              </div>  
+             <div className='row'> 
               <button type="button" className="btn btn-primary" 
               onClick={()=>{
                 Navigate('/Bookshow/'+e._id) 
                }}>
                  Book Now</button>   
              
-                 
+                 </div>  
              </div> 
             </div>
                 
