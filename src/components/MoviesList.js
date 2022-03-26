@@ -18,7 +18,7 @@ function MoviesList() {
   //Fetching using Axios
   let getData = async()=>{
     try {
-      let d = await axios.get(env.API_URL+'movies/')
+      let d = await axios.get('https://ticketbooking-server.herokuapp.com/movies/')
     setDetails(d.data.data)
     } catch (error) {
       console.log(error)

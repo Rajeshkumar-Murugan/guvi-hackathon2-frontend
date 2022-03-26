@@ -25,32 +25,30 @@ function Signup() {
     }),
     onSubmit:values=>{
       save(values, null, 2)
+
     }
   })
 
 // Adding data using axios
 let save = async(val)=>{
   try {
-    let res =  await axios.post(env.API_URL+'users/register',val)
-      console.log(res)
-      history('/Clientdetails')
-      document.getElementById("act-add").innerHTML = `<h2>${res.data.message}</h2>`
-    
+    console.log("response", val.email)
+    let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/register',val)     
+      document.getElementById("signup-status").innerHTML = `<p>${res.data.message}</p>`  
+      
   } catch (error) {
     alert("error occured please contact the developer")
     console.log(error)
   } 
 }
 
-
   return (
     
     <div>      
         <div className="modal-header">
         <h5 className="modal-title" id="exampleModalLabel">Signup page</h5>
-        {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
         </div>
-        <div className="modal-body" id="act-add">
+        <div className="modal-body">
          <form  onSubmit={formik.handleSubmit}>
          <div className="mb-3">
             <label htmlFor="recipient-name" className="col-form-label">Name:</label>
@@ -87,7 +85,9 @@ let save = async(val)=>{
                   value={formik.values.password}/>
         {formik.touched.password && formik.errors.password?(<div style={{color:"red"}}>{formik.errors.password}</div>):null}
             </div>
+            <div id="signup-status"></div>
             <div className="modal-footer">
+            
             <button type='submit' className="btn btn-primary" >Sign Up</button>
             
         </div>

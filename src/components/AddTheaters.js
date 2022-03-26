@@ -35,7 +35,7 @@ function AddTheaters() {
 // Adding data using axios
 let save = async(val)=>{
   try {
-    let res =  await axios.post(env.API_URL,val)
+    let res =  await axios.post('https://ticketbooking-server.herokuapp.com/',val)
       console.log(res)
       history('/Theaterdata')
       
@@ -54,7 +54,7 @@ useEffect(() => {
 
 let getData = async()=>{
   try {
-    let d = await axios.get(env.API_URL+'movies/')
+    let d = await axios.get('https://ticketbooking-server.herokuapp.com/movies/')
   setDetails(d.data.data)
   } catch (error) {
     console.log(error)

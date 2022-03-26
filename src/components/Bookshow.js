@@ -22,7 +22,7 @@ function Bookshow() {
 
 let getData = async()=>{
     try {
-        let res= await axios.get(env.API_URL+'movies/'+params.id)
+        let res= await axios.get('https://ticketbooking-server.herokuapp.com/movies/'+params.id)
         console.log(res.data.data)
         let moviedetails = res.data
         setDetails(moviedetails.data)

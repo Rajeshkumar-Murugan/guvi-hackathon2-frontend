@@ -13,7 +13,7 @@ function Theaterdata() {
 
 let getData = async()=>{
     try {
-      let d = await axios.get(env.API_URL)
+      let d = await axios.get('https://ticketbooking-server.herokuapp.com/')
     setDetails(d.data.data)
     } catch (error) {
       console.log(error)

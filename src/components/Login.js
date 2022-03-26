@@ -3,10 +3,9 @@ import {React} from 'react';
 import axios from 'axios';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
-import env from 'react-dotenv'
+// import env from 'react-dotenv'
 
 function Login() {
-  let history = useNavigate()
  
   const formik = useFormik({
     initialValues:{ 
@@ -22,20 +21,19 @@ function Login() {
     }
   })
 
-  
+ 
  
   let loggedin = async(val)=>{
     try {
-      let res =  await axios.post(env.API_URL+'users/login',val)
-        if(res.data.message === "login successfully")
+      let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/login',val)
+        if(res)
         {
-        document.getElementById("login-side").innerHTML = `<h2>${res.data.message}</h2>`       
+        document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
         console.log("Client logged in successfully",res)
-        history('/Clientdetails')
         }
         else{
-          document.getElementById("login-status").innerHTML = res.data.message       
-          console.log("Client logged Not successfully",res) 
+          document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
+          console.log("Failed to login",res) 
         } 
     } catch (error) {
       alert("error occured please contact the developer")
@@ -43,6 +41,28 @@ function Login() {
     } 
   }
 
+  const forgetpwd = async(values) => {
+    
+    var obj = JSON.stringify({ email: values});
+    let object = JSON.parse(obj)
+
+    // console.log(typeof(),obj)
+    try {
+      let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/forget-password',object)
+        if(res)
+        {
+        document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
+        // console.log("Client logged in successfully",res)
+        }
+        else{
+          document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
+          // console.log("Failed to login",res) 
+        } 
+    } catch (error) {
+      alert("error occured please contact the developer")
+      console.log(error)
+    } 
+  }
 
 
 
@@ -54,8 +74,8 @@ function Login() {
         <h5 className="modal-title" id="exampleModalLabel">Signin page</h5>
        
         </div>
-        <div className="modal-body" id="login-side">
-         <form onSubmit={formik.handleSubmit}>
+        <div className="modal-body">
+         <form onSubmit={formik.handleSubmit} name="loginform">
             <div className="mb-3">
             <label htmlFor="recipient-name" className="col-form-label">Email ID:</label>
             <input id="email" name="email" type="email"
@@ -74,10 +94,16 @@ function Login() {
         {formik.touched.password && formik.errors.password?(<div style={{color:"red"}}>{formik.errors.password}</div>):null}
             </div>
             <div id='login-status'></div>
+            <div id='forgetpassword'>
+                        
+            </div>
+            <a href='#'variant="contained" color="secondary" type='button' onClick={() => forgetpwd(document.loginform.email.value)} >Forget Password</a>
             <div className="modal-footer"> </div>
+
             <button type="sumbit" className="btn btn-primary">Login</button>
         </form>
-      
+        
+
            
            
         </div>
