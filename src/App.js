@@ -8,13 +8,12 @@ import Clientdetails from './components/Clientdetails';
 import Bookshow from './components/Bookshow';
 import Theaterdata from './components/Theaterdata';
 import Footer from './components/Footer';
-
-
+import {myContext} from '../src/components/context'
 
 function App() {
 console.log(env.API_URL)
   return (
-
+<myContext.Provider>
     <Router>
      
      <Header></Header>
@@ -26,12 +25,13 @@ console.log(env.API_URL)
      <Route path='/MoviesList' element={<MoviesList/>}></Route>
      <Route path='/Bookshow/:id/' element={<Bookshow/>}></Route>
      <Route path='/Theaterdata/' element={<Theaterdata/>}></Route>
+     <Route path='/Booking/:thName/' element={<Bookshow/>}></Route>
      </Routes>
       <Footer/>
      
       </Router>
     
-     
+      </myContext.Provider>
      
     
   );

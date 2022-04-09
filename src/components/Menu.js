@@ -2,12 +2,18 @@ import React from 'react'
 import './Menus.css'
 import Signin from './Signin';
 import {Link} from 'react-router-dom'
+import {myContext} from './context'
+
 
 function Menu() {
   return (
     <div>
   <div className='align'>
   <div> 
+  
+
+
+
     <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup" data-bs-whatever="@mdo">Signin</button>              
      <Signin></Signin>
   </div> 

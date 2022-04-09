@@ -32,9 +32,7 @@ function Addmovies() {
         try {
           let res =  await axios.post(env.API_URL+'addmovies',val)
             console.log(res)
-            history('/MoviesList')
-            
-          
+            history('/MoviesList')          
         } catch (error) {
           alert("error occured please contact the developer")
           console.log(error)

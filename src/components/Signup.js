@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
-import {React} from 'react';
+import React, { useState } from 'react';
+// import {React} from 'react';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
 import env from 'react-dotenv'
@@ -8,6 +9,7 @@ import env from 'react-dotenv'
 
 function Signup() {
   let history = useNavigate()
+  const [status,setStatus]  = useState( '' );
 
 
   const formik = useFormik({
@@ -33,8 +35,8 @@ function Signup() {
 let save = async(val)=>{
   try {
     console.log("response", val.email)
-    let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/register',val)     
-      document.getElementById("signup-status").innerHTML = `<p>${res.data.message}</p>`  
+    let res =  await axios.post(env.API_URL+'users/register',val)     
+    setStatus(res.data.message)   
       
   } catch (error) {
     alert("error occured please contact the developer")
@@ -85,7 +87,9 @@ let save = async(val)=>{
                   value={formik.values.password}/>
         {formik.touched.password && formik.errors.password?(<div style={{color:"red"}}>{formik.errors.password}</div>):null}
             </div>
-            <div id="signup-status"></div>
+            <p id="signup-status">
+            {status}
+            </p>
             <div className="modal-footer">
             
             <button type='submit' className="btn btn-primary" >Sign Up</button>

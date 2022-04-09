@@ -1,6 +1,7 @@
 import {React,useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
+import env from 'react-dotenv'
 
 function Clientdetails() {
 
@@ -16,7 +17,7 @@ function Clientdetails() {
   //Fetching using Axios
   let getData = async()=>{
     try {
-      let d = await axios.get("https://ticketbooking-server.herokuapp.com/user")
+      let d = await axios.get(env.API_URL+"user")
       // console.log(d)
     setDetails(d.data.data)
     } catch (error) {

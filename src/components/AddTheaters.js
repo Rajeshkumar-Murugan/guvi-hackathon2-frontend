@@ -9,8 +9,6 @@ import Addmovies from './Addmovies';
 
 function AddTheaters() {
   let history = useNavigate()
-
-
   const formik = useFormik({
     initialValues:{ 
       moviename:'',
@@ -35,11 +33,10 @@ function AddTheaters() {
 // Adding data using axios
 let save = async(val)=>{
   try {
-    let res =  await axios.post('https://ticketbooking-server.herokuapp.com/',val)
+    let res =  await axios.post(env.API_URL,val)
       console.log(res)
-      history('/Theaterdata')
-      
-    
+      console.log("values"+val)
+      history('/Theaterdata')  
   } catch (error) {
     alert("error occured please contact the developer")
     console.log(error)
@@ -54,7 +51,7 @@ useEffect(() => {
 
 let getData = async()=>{
   try {
-    let d = await axios.get('https://ticketbooking-server.herokuapp.com/movies/')
+    let d = await axios.get(env.API_URL+'movies/')
   setDetails(d.data.data)
   } catch (error) {
     console.log(error)
@@ -141,7 +138,6 @@ let getData = async()=>{
   
 </form>
 <Addmovies/>
-
     </div>
   )
 }

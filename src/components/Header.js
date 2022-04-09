@@ -13,7 +13,8 @@ function Header() {
               <img src='https://www.pinclipart.com/picdir/big/524-5246520_upcoming-events-clip-art.png' id="logo_png"/>
               </div>
              
-              <div className='col-sm-6'>              
+              <div className='col-sm-6'> 
+                           
               <Menu></Menu>
               </div>
          

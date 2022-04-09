@@ -1,9 +1,12 @@
 import {useNavigate} from 'react-router-dom'
-import {React} from 'react';
+// import {React} from 'react';
 import axios from 'axios';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
-// import env from 'react-dotenv'
+import env from 'react-dotenv'
+import React, { useState } from 'react';
+import {myContext} from './context'
+
 
 function Login() {
  
@@ -21,18 +24,25 @@ function Login() {
     }
   })
 
- 
- 
+  const [status,setStatus]  = useState( '' );
+
+
   let loggedin = async(val)=>{
     try {
-      let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/login',val)
+      let res =  await axios.post(env.API_URL+'users/login',val)
         if(res)
         {
-        document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
-        console.log("Client logged in successfully",res)
+          setStatus(res.data.message)       
+        console.log(res.data.data.name)
+        let usernam = res.data.data.name
+        if(usernam){
+          <myContext.Provider value={{username:usernam}}>
+
+          </myContext.Provider>
+        }
         }
         else{
-          document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
+          setStatus(res.data.message)         
           console.log("Failed to login",res) 
         } 
     } catch (error) {
@@ -46,18 +56,10 @@ function Login() {
     var obj = JSON.stringify({ email: values});
     let object = JSON.parse(obj)
 
-    // console.log(typeof(),obj)
+    console.log(typeof(object),object)
     try {
-      let res =  await axios.post('https://ticketbooking-server.herokuapp.com/users/forget-password',object)
-        if(res)
-        {
-        document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
-        // console.log("Client logged in successfully",res)
-        }
-        else{
-          document.getElementById("login-status").innerHTML = `<p>${res.data.message}</p>`       
-          // console.log("Failed to login",res) 
-        } 
+      let res =  await axios.post(env.API_URL+'users/forget-password',object)
+      setStatus(res.data.message) 
     } catch (error) {
       alert("error occured please contact the developer")
       console.log(error)
@@ -93,7 +95,7 @@ function Login() {
                   value={formik.values.password}/>
         {formik.touched.password && formik.errors.password?(<div style={{color:"red"}}>{formik.errors.password}</div>):null}
             </div>
-            <div id='login-status'></div>
+            <div id='login-status'>{status}</div>
             <div id='forgetpassword'>
                         
             </div>
