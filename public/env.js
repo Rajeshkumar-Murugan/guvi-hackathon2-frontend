@@ -1,3 +1,3 @@
 window.env = {
-  "API_URL": "https://ticketbooking-server.herokuapp.com/"
+  "API_URL": "http://localhost:4000/"
 };

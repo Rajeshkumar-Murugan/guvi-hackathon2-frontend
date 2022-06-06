@@ -6,7 +6,7 @@ import Menu from './Menu';
 
 function Header() {
   return (
-    <div className='headers'>
+    <div className='headers sticky-top'>
         <div className='container'>
             <div className='row '>
               <div className='col-sm-6'>

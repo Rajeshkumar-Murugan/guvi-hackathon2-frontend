@@ -2,6 +2,7 @@ import {React,useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
+import Header from './Header';
 // import {Link} from 'react-router-dom'
 // import Bookshow from './Bookshow';
 
@@ -27,14 +28,15 @@ function MoviesList() {
   
  
 
-  return (
+  return ( <>
+    <Header/> 
     <div className='container'>
       <div class="row justify-content-around">
        {
      
   details.map((e,i)=>{
    return<>
-        
+       
           <div className="card " style={{ width: '15rem' }}>
             <img src={e.movieimg} className="card-img-top" alt={e.moviename} style={{ height: '18rem', borderRadius: '5px' }}/>
             <div className="card-body">
@@ -58,6 +60,7 @@ function MoviesList() {
 }
 </div>
     </div>
+    </>
   )
 }
 

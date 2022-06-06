@@ -2,6 +2,8 @@ import {React,useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
+import Header from './Header';
+
 
 function Theaterdata() {
 
@@ -23,6 +25,8 @@ let getData = async()=>{
   
   return( <>
     <div>
+
+      <Header/>
     <table class="table">
   <thead>
     <tr>

@@ -1,21 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './Menus.css'
 import Signin from './Signin';
-import {Link} from 'react-router-dom'
-import {myContext} from './context'
-
+import {Link,useNavigate} from 'react-router-dom'
 
 function Menu() {
+  const [logout, setLogout] = useState(false)
+  let history = useNavigate()
+  useEffect(() => {
+    if(!localStorage.getItem('auth'))   history('/')
+  }, [logout])
+
   return (
-    <div>
+    <div >
   <div className='align'>
-  <div> 
+  <div > 
+             
   
-
-
-
-    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup" data-bs-whatever="@mdo">Signin</button>              
-     <Signin></Signin>
+  (<button type="button" class="btn btn-danger" onClick={(e)=>{
+               e.preventDefault()
+               localStorage.removeItem('auth')
+               localStorage.removeItem('email')
+               localStorage.removeItem('phone')
+               localStorage.removeItem('name')
+               localStorage.removeItem('admin')
+               setLogout(true)
+             }}>Logout</button>)
+     
   </div> 
     <div>
      <nav className="navbar-dark">           

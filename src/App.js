@@ -8,31 +8,34 @@ import Clientdetails from './components/Clientdetails';
 import Bookshow from './components/Bookshow';
 import Theaterdata from './components/Theaterdata';
 import Footer from './components/Footer';
-import {myContext} from '../src/components/context'
+import Login from './components/Login';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SignUp from './components/Signup';
+import Signin from './components/Signin';
+
 
 function App() {
 console.log(env.API_URL)
-  return (
-<myContext.Provider>
+  return (<>
     <Router>
-     
-     <Header></Header>
      
      <Routes>
      <Route path='/add-theater/' element={<AddTheaters/>}></Route>
-     <Route path='/' element={<MoviesList/>}></Route>
+     <Route path='/Home' element={<MoviesList/>}></Route>
      <Route path='/Clientdetails/' element={<Clientdetails/>}></Route>
      <Route path='/MoviesList' element={<MoviesList/>}></Route>
      <Route path='/Bookshow/:id/' element={<Bookshow/>}></Route>
      <Route path='/Theaterdata/' element={<Theaterdata/>}></Route>
      <Route path='/Booking/:thName/' element={<Bookshow/>}></Route>
+     <Route path='/' element={<Signin/>}></Route>
+     <Route path='/Sign-up' element={<SignUp/>}></Route>
      </Routes>
-      <Footer/>
      
       </Router>
-    
-      </myContext.Provider>
-     
+         <ToastContainer/>
+
+         </>
     
   );
 }

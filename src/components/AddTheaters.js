@@ -5,6 +5,7 @@ import {React,useState, useEffect} from 'react';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
 import Addmovies from './Addmovies';
+import Header from './Header';
 
 
 function AddTheaters() {
@@ -60,6 +61,8 @@ let getData = async()=>{
 
 
   return (
+    <>
+    <Header/>
     <div className='container'>
       <h2>Add Theater details</h2>
       <form className="row g-3" onSubmit={formik.handleSubmit}>
@@ -139,6 +142,7 @@ let getData = async()=>{
 </form>
 <Addmovies/>
     </div>
+    </>
   )
 }
 
