@@ -49,6 +49,7 @@ function Signin() {
                 localStorage.setItem('name',res.data.data.name)
                 localStorage.setItem('email',res.data.data.email)
                 localStorage.setItem('phone',res.data.data.phone)
+                localStorage.setItem('id',res.data.data._id)
                 localStorage.setItem('auth', true)
                 if(res.data.data._id === '629df681bd9cb2ba8f7e9996')
                 {

@@ -4,28 +4,12 @@ import Signin from './Signin';
 import {Link,useNavigate} from 'react-router-dom'
 
 function Menu() {
-  const [logout, setLogout] = useState(false)
-  let history = useNavigate()
-  useEffect(() => {
-    if(!localStorage.getItem('auth'))   history('/')
-  }, [logout])
+ 
 
   return (
     <div >
   <div className='align'>
   <div > 
-             
-  
-  (<button type="button" class="btn btn-danger" onClick={(e)=>{
-               e.preventDefault()
-               localStorage.removeItem('auth')
-               localStorage.removeItem('email')
-               localStorage.removeItem('phone')
-               localStorage.removeItem('name')
-               localStorage.removeItem('admin')
-               setLogout(true)
-             }}>Logout</button>)
-     
   </div> 
     <div>
      <nav className="navbar-dark">           

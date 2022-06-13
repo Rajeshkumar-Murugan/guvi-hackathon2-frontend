@@ -13,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SignUp from './components/Signup';
 import Signin from './components/Signin';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 console.log(env.API_URL)

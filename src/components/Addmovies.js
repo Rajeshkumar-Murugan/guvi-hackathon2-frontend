@@ -4,6 +4,7 @@ import {useFormik} from 'formik'
 import *as yup from 'yup'
 import env from 'react-dotenv'
 import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function Addmovies() {
     
@@ -31,7 +32,7 @@ function Addmovies() {
       let save = async(val)=>{
         try {
           let res =  await axios.post(env.API_URL+'addmovies',val)
-            console.log(res)
+            toast.success(res.data.message) 
             history('/MoviesList')          
         } catch (error) {
           alert("error occured please contact the developer")

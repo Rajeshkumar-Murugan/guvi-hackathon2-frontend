@@ -1,111 +1,229 @@
-import {React, useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom'
-import axios from 'axios';
-import env from 'react-dotenv'
-import '../components/Bookshow.css'
-import Booking from './Booking';
-import {useNavigate} from 'react-router-dom'
-
+import { React, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import env from "react-dotenv";
+import "../components/Bookshow.css";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Modal from "react-bootstrap/Modal";
+import Header from "./Header";
+import SeatBooking from "./SeatBooking";
+import './BookingShow.css'
 
 function Bookshow() {
-    let params = useParams() 
-    let Navigate = useNavigate()
+  let params = useParams();
+  let Navigate = useNavigate();
+  const [movieTitle, setMovieTitle] = useState("");
 
-    let [details,setDetails] =useState([])
-    useEffect(() => {
-        if(params.id){
-          getData();
-        }
-},[])
+  const [Theater, setTheater] = useState([]);
+  const [SelectedDate, setSelectedDate] = useState(formatDate(new Date()));
+  const [show, setShow] = useState(false);
 
+  const [movieName, setMovieName] = useState('')
+  const [theaterName, setTheaterName] = useState('')
+  const [theaterSeat, setTheaterSeat] = useState('')
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-let getData = async()=>{
-    try {
-        let res= await axios.get(env.API_URL+'movies/'+params.id)
-        console.log(res.data.data)
-        let moviedetails = res.data
-        setDetails(moviedetails.data)
-
-        gettheater(res.data.data.moviename)
-        
-    } catch (error) {
-        alert("Error occured while getting the data please contact developer")
-          console.log(error)
-      }
-  
+  let [details, setDetails] = useState([]);
+  useEffect(() => {
+    if (params.id) {
+      getData();
     }
+  }, []);
 
+  useEffect(() => {
+    gettheater();
+  }, [movieTitle]);
 
-let gettheater = async(moviename)=>{      
-  document.getElementById('booking').innerHTML =''
+  let getData = async () => {
     try {
-        let res= await axios.get(env.API_URL+'theater/'+moviename)
-        let details = res.data
-        details.data.map((e)=>
-        document.getElementById('booking').innerHTML +=`
-        <button type="button" class="btn btn-success" onClick=${()=>{
-          Navigate('/Bookshow/'+e._id) 
-         }} onclick="movietheater(${e.moviename}, ${e.thName})">${e.thName}</button>
-        `
-        )
-
-        console.log(details)
-        } catch (error) {
-        alert("Error occured while getting the data please contact developer")
-          console.log(error)
-      }
-  
-    }
-
-let movietheater = async(moviename,thName)=>{
-  try {
-    let res= await axios.get(env.API_URL+'theater/'+moviename+'/'+thName)
-    let details = res.data
-    details.data.map((e)=>
-    document.getElementById('booking').innerHTML +=`
-    <button type="button" class="btn btn-success" onclick="">${e.Name}</button>
-    `
-    )
-
-    console.log(details)
+      let res = await axios.get(env.API_URL + "movies/" + params.id);
+      let moviedetails = res.data;
+      setDetails(moviedetails.data);
+      setMovieTitle(res.data.data.moviename);
+      
     } catch (error) {
-    alert("Error occured while getting the data please contact developer")
-      console.log(error)
+      alert("Error occured while getting the data please contact developer");
+      console.log(error);
+    }
+  };
+
+  let gettheater = async () => {
+    try {
+      let res = await axios.get(env.API_URL);
+      let details = res.data.data;
+      let TheaterAvailable = details
+        .filter((el) => el.moviename == movieTitle)
+        .map((e) => {
+          return e;
+        });
+
+     
+      setTheater(TheaterAvailable);
+     
+    } catch (error) {
+      alert("Error occured while getting the data please contact developer");
+      console.log(error);
+    }
+  };
+
+  let TheaterTimings = (element) => {
+    let timings = [];
+    let answ = element.split(",");
+    answ.forEach(function (obj) {
+      timings.push(obj);
+    });
+    return timings;
+  };
+
+  function formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [day, month, year].join("/");
   }
-}
-  
 
-return<>
+  function getDatesInRange(startDate, endDate) {
+    const date = new Date(startDate.getTime());
 
-<div className='container'>
-    <div className='row'>
-        <div className ='col'>
-        <div class="card mb-12" >
-  <div className="row g-0">
-    <div className="col-md-4">
-      <img src={details.movieimg} className="img-fluid rounded-start" alt={details.moviename} style={{height: '340px'}}/>
-    </div>
-    <div className="col-md-8">
-      <div className="card-body">
-        <h5 className="card-title">{details.moviename}</h5>
-        <p className="card-text">{details.moviedes}</p>
-        {/* <button type="button" class="btn btn-success" onClick={gettheater(details.moviename)}>Book Now</button> */}
+    const dates = [];
+
+    while (date <= endDate) {
+      dates.push(new Date(date));
+      date.setDate(date.getDate() + 1);
+    }
+
+    return dates;
+  }
+
+  var date = new Date("08-02-2020");
+  date.setDate(date.getDate() + 7);
+
+
+  const d1 = new Date();
+  const d2 = new Date("2022-06-30");
+  d2.setDate(d1.getDate() + 7);
+
+
+
+  return (
+    <div >
+      <Header />
+
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <div class="card mb-12">
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img
+                    src={details.movieimg}
+                    className="img-fluid rounded-start"
+                    alt={details.moviename}
+                    style={{ height: "340px" }}
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title">{details.moviename}</h5>
+                    <p className="card-text">{details.moviedes}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row ">
+          <ButtonGroup aria-label="Basic example">
+            {getDatesInRange(d1, d2).map((el) => {
+              return (
+                <>
+                  <div>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setSelectedDate(formatDate(el))}
+                    >
+                      {formatDate(el)}
+                    </Button>
+                    &nbsp;
+                  </div>
+                </>
+              );
+            })}
+          </ButtonGroup>
+        </div>
+        <div className="row overflow-scroll">
+          {Theater.filter((el) => formatDate(el.thDate) == SelectedDate).map(
+            (el, i) => {
+              
+              return (
+                <div className="row">
+                  <div className="card-body">
+                    <div className="col">
+                      {el.thName} - {el.screen} 
+                      <br />
+                      <br />
+                      {TheaterTimings(el.thTime).map((e) => {
+                        return (
+                          <>
+                            <button type="button" class="btn btn-success" onClick={()=>{
+                                handleShow()
+                            setTheaterSeat(el.thSeat)}
+                             } >
+                              {e}
+                            </button>
+                            &nbsp;
+                          </>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          )}
+          <Modal show={show} onHide={handleClose} >
+            <Modal.Header closeButton>
+              <Modal.Title>{details.moviename}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body >
+              <div  >
+
+              
+            {Array(theaterSeat)
+            .fill(1)
+            .map((el, i) =>{     
+
+            return <>
+            <input  type="checkbox" id="seat" name="seat" value={i} key={i}/> &nbsp;&nbsp;&nbsp;
+            </>
+            
+          }  
+              )}
+             </div>
+            
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
     </div>
-  </div>
-</div>      
-        </div>
-
-    </div>
-    <div id="booking">
-        
-    </div>
-</div>
- 
- 
-
-</> 
+  );
 }
 
-export default Bookshow
+export default Bookshow;
