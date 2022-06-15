@@ -141,7 +141,7 @@ function Bookshow() {
             </div>
           </div>
         </div>
-        <div className="row ">
+        <div className="row overflow-auto">
           <ButtonGroup aria-label="Basic example">
             {getDatesInRange(d1, d2).map((el) => {
               return (
@@ -160,7 +160,7 @@ function Bookshow() {
             })}
           </ButtonGroup>
         </div>
-        <div className="row overflow-scroll">
+        <div className="row overflow-auto">
           {Theater.filter((el) => formatDate(el.thDate) == SelectedDate).map(
             (el, i) => {
               
