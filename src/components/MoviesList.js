@@ -30,7 +30,7 @@ function MoviesList() {
 
   return ( <>
     <Header/> 
-    <div className="container overflow-hidden">
+    <div className="container">
       <div class="row justify-content-around">
        {
      

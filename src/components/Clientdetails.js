@@ -34,7 +34,8 @@ function Clientdetails() {
   return (
     <div>
       <Header/>
-      <table className="table">
+      <div className='overflow-auto'>
+      <table className="table ">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -43,7 +44,7 @@ function Clientdetails() {
       <th scope="col">Email</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody className='overflow-auto'>
    
 {
   details.map((e,i)=>{
@@ -62,16 +63,7 @@ function Clientdetails() {
     
   </tbody>
 </table>
-    
-
-      
-    
-    
- 
-        
-        
-
-
+</div>
     </div>
   )
 }

@@ -108,7 +108,7 @@ function AddTheaters() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="container overflow-auto">
         <h2>Add Theater details</h2>
         <form className="row g-3" onSubmit={formik.handleSubmit}>
           <div className="col-md-6">
