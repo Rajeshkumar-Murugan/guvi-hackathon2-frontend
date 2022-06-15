@@ -40,7 +40,7 @@ let getData = async()=>{
 
       <Header/>
       <div className='overflow-auto'>
-    <table class='table'>
+    <table className='table'>
   <thead>
     <tr>
       <th scope="col">#</th>

@@ -1,15 +1,14 @@
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import env from "react-dotenv";
 import "../components/Bookshow.css";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Modal from "react-bootstrap/Modal";
 import Header from "./Header";
-import SeatBooking from "./SeatBooking";
 import './BookingShow.css'
+
 
 function Bookshow() {
   let params = useParams();
@@ -40,7 +39,7 @@ function Bookshow() {
 
   let getData = async () => {
     try {
-      let res = await axios.get(env.API_URL + "movies/" + params.id);
+      let res = await axios.get("https://ticketbooking-server.herokuapp.com/movies/" + params.id);
       let moviedetails = res.data;
       setDetails(moviedetails.data);
       setMovieTitle(res.data.data.moviename);
@@ -53,7 +52,7 @@ function Bookshow() {
 
   let gettheater = async () => {
     try {
-      let res = await axios.get(env.API_URL);
+      let res = await axios.get("https://ticketbooking-server.herokuapp.com/");
       let details = res.data.data;
       let TheaterAvailable = details
         .filter((el) => el.moviename == movieTitle)
@@ -174,7 +173,7 @@ function Bookshow() {
                       {TheaterTimings(el.thTime).map((e) => {
                         return (
                           <>
-                            <button type="button" class="btn btn-success" onClick={()=>{
+                            <button type="button" className="btn btn-success" onClick={()=>{
                                 handleShow()
                             setTheaterSeat(el.thSeat)}
                              } >

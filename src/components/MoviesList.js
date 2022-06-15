@@ -31,7 +31,7 @@ function MoviesList() {
   return ( <>
     <Header/> 
     <div className="container">
-      <div class="row justify-content-around">
+      <div className="row justify-content-around">
        {
      
   details.map((e,i)=>{
@@ -46,7 +46,7 @@ function MoviesList() {
              <div className='row'> 
               <button type="button" className="btn btn-primary" 
               onClick={()=>{
-                Navigate('/Bookshow/'+e._id) 
+                Navigate('/Bookshow/'+e._id)
                }}>
                  Book Now</button>   
              

@@ -1,5 +1,4 @@
 import './App.css';
-import env from 'react-dotenv'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import AddTheaters from './components/AddTheaters';
 import MoviesList from './components/MoviesList';
@@ -13,7 +12,6 @@ import Signin from './components/Signin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-console.log(env.API_URL)
   return (<>
     <Router>
      
@@ -22,7 +20,7 @@ console.log(env.API_URL)
      <Route path='/Home' element={<MoviesList/>}></Route>
      <Route path='/Clientdetails/' element={<Clientdetails/>}></Route>
      <Route path='/MoviesList' element={<MoviesList/>}></Route>
-     <Route path='/Bookshow/:id/' element={<Bookshow/>}></Route>
+     <Route path='/Bookshow/:id' element={<Bookshow/>}></Route>
      <Route path='/Theaterdata/' element={<Theaterdata/>}></Route>
      <Route path='/Booking/:thName/' element={<Bookshow/>}></Route>
      <Route path='/' element={<Signin/>}></Route>
