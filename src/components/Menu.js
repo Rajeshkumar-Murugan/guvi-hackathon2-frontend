@@ -23,7 +23,7 @@ function Menu() {
           </div>
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <Link to="/">
+            <Link to="/Home">
               <li className="nav-item">
                 <a className="nav-link active text-black" aria-current="page" href="#">Movies List</a>
               </li>
