@@ -46,7 +46,7 @@ function Menu() {
 
               <Link to="/CreateTheater">
               <li className="nav-item" data-bs-dismiss="offcanvas">
-                <a className="nav-link text-black" href="#">Theater details</a>
+                <a className="nav-link text-black" href="#">Add Theater/Movies</a>
               </li>
               </Link>
               
