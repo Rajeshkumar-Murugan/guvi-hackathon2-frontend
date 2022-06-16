@@ -28,11 +28,11 @@ function Menu() {
                 <a className="nav-link active text-black" aria-current="page" href="#">Movies List</a>
               </li>
               </Link>
-              <Link to="/add-theater">
+              {/* <Link to="/add-theater">
               <li className="nav-item" data-bs-dismiss="offcanvas">
                 <a className="nav-link text-black" href="#">Add Theater</a>
               </li>
-              </Link>
+              </Link> */}
               <Link to="/Clientdetails">
               <li className="nav-item" data-bs-dismiss="offcanvas">
                 <a className="nav-link text-black" href="#">Client details</a>

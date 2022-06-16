@@ -26,7 +26,7 @@ function AddTheaters() {
       screen: yup.string().required("Screen Name is required"),
       thDate: yup.string().required("Date is required"),
       thTime: yup.string().required("Time is required"),
-      thSeat: yup.string().required("Seat availablity is required"),
+      thSeat: yup.string().required("Seat is required"),
     }),
     onSubmit: (values) => {
       save(values, null, 2);
@@ -106,11 +106,9 @@ function AddTheaters() {
  
   return (
     <>
-      <Header />
       <div className="container overflow-auto">
-        <h2>Add Theater details</h2>
         <form className="row g-3" onSubmit={formik.handleSubmit}>
-          <div className="col-md-6">
+          <div className="col-12">
             <label
               htmlFor="moviename"
               className="form-label"
@@ -143,7 +141,7 @@ function AddTheaters() {
             ) : null}
           </div>
 
-          <div className="col-md-3">
+          <div className="col-12">
             <label htmlFor="thName" className="form-label">
               Theater Name
             </label>
@@ -176,7 +174,7 @@ function AddTheaters() {
             ) : null}
           </div>
 
-          <div className="col-md-3">
+          <div className="col-12">
             <label htmlFor="screen" className="form-label">
               Screen Name
             </label>
@@ -206,7 +204,7 @@ function AddTheaters() {
             ) : null}
           </div>
 
-          <div className="col-md-4">
+          <div className="col-12">
             <label htmlFor="thDate" className="form-label">
               Date
             </label>
@@ -224,7 +222,7 @@ function AddTheaters() {
               <div style={{ color: "red" }}>{formik.errors.thDate}</div>
             ) : null}
           </div>
-          <div className="col">
+          <div className="col-6">
             <label htmlFor="thTime" className="form-label">
               Timings
             </label>
@@ -242,7 +240,7 @@ function AddTheaters() {
               <div style={{ color: "red" }}>{formik.errors.thTime}</div>
             ) : null}
           </div>
-          <div className="col">
+          <div className="col-6">
             <label htmlFor="thSeat" className="form-label">
               Total seat
             </label>

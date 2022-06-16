@@ -1,10 +1,10 @@
 import {React,useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
 import Header from './Header';
 import Loading from './Loading';
-
+import {Link} from 'react-router-dom'
+import AddTheaters from './AddTheaters';
 
 function Theaterdata() {
 
@@ -51,7 +51,27 @@ let getData = async()=>{
   
   <div className="container d-flex justify-content-between">
   <h3>Show Details</h3>
-  <div><button className='btn btn-success'>Add Theater</button></div>
+  <div>
+  
+    <button ype="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Theater</button>
+    
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+        Add Theater details
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <AddTheaters/>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
   </div>
   
       <br/>
