@@ -3,13 +3,15 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
 import Header from './Header';
-// import {Link} from 'react-router-dom'
-// import Bookshow from './Bookshow';
+import Loading from './Loading';
+
 
 function MoviesList() {
 
   let [details,setDetails] =useState([])
   let Navigate = useNavigate()
+  const [isloading, setisloading] = useState(true)
+
   //Fetching the data from server starts
   useEffect(() => {
     getData()
@@ -19,8 +21,10 @@ function MoviesList() {
   //Fetching using Axios
   let getData = async()=>{
     try {
-      let d = await axios.get(env.API_URL+'movies/')
-    setDetails(d.data.data)
+      let movies = await axios.get(env.API_URL+'movies/')
+      {movies?setisloading(false):setisloading(true)}
+
+    setDetails(movies.data.data)
     } catch (error) {
       console.log(error)
     }
@@ -30,6 +34,9 @@ function MoviesList() {
 
   return ( <>
     <Header/> 
+    {isloading ? 
+ <Loading/>
+:
     <div className="container">
       <div className="row justify-content-around">
        {
@@ -60,6 +67,7 @@ function MoviesList() {
 }
 </div>
     </div>
+}
     </>
   )
 }

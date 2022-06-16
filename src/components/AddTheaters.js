@@ -6,7 +6,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Addmovies from "./Addmovies";
 import Header from "./Header";
-import CreateTheater from "./CreateTheater";
 import { toast } from 'react-toastify';
 
 function AddTheaters() {
@@ -270,13 +269,8 @@ function AddTheaters() {
             </button>
           </div>
         </form>
-        <div className="row">
-          <Addmovies />
-          <br />
-        </div>
-        <div className="row">
-          <CreateTheater />
-        </div>
+        
+        
       </div>
     </>
   );

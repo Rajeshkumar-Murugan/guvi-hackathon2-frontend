@@ -1,13 +1,20 @@
 import axios from 'axios';
-import {React} from 'react';
 import {useFormik} from 'formik'
 import *as yup from 'yup'
 import env from 'react-dotenv'
 import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify';
+import Header from "./Header";
+import {React,useState, useEffect} from 'react';
+import Loading from './Loading';
+import Addmovies from './Addmovies';
+
+
 function CreateTheater() {
     
   let history = useNavigate()
+  let [details,setDetails] =useState([])
+  const [isloading, setisloading] = useState(true)
 
     const formik = useFormik({
         initialValues:{ 
@@ -38,10 +45,49 @@ function CreateTheater() {
         } 
       }
       
+      let handledelete = async(id)=>{
+        try {
+         let res = await axios.delete(env.API_URL+'deleteTheater/'+id)
+          getData();
+        } catch (error) {
+          alert("Error occured while deleting the data please contact developer")
+          console.log(error)
+        }
+      }
+    
+ //Fetching the data from server starts
+ useEffect(() => {
+  getData()
+  },[])
+
+
+//Fetching using Axios
+let getData = async()=>{
+  try {
+    let thData = await axios.get(env.API_URL)
+    {thData?setisloading(false):setisloading(true)}
+
+  setDetails(thData.data.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
 
   return (
     <div>
-        <div className='container'>
+      <Header/>
+       
+<br/>
+{isloading ? 
+ <Loading/>
+:
+<div className='container-fluid'>
+<div className='row'>  
+<div className='col-md-6 '>
+<div className='container'>
       
       <form className="row g-3" onSubmit={formik.handleSubmit}>
         <h2>Add Theater</h2>
@@ -75,10 +121,81 @@ function CreateTheater() {
                 </div>
             
             <div className="col-3">
-            <button type="submit" className="btn btn-primary">Add Theater</button>
+            <button type="submit" className="btn btn-primary" style={{padding:"10px 20px"}}>Add Theater</button>
         </div>
 </form>
+
 </div>
+<br/>
+<div className='overflow-auto'>
+<table className='table'>
+<thead>
+<tr>
+  <th scope="col-1">#</th>
+  <th scope="col-4">Theater Name</th>
+  <th scope="col-4">Screen Name</th>
+  <th scope="col-2">Seat</th>
+  <th scope="col-1">Action</th>
+</tr>
+</thead>
+{details.map((e,i)=>{
+return <tbody>
+<tr>
+  <th scope="row">{i+1}</th>
+  <td>{e.thName}</td>
+  <td>{e.screen}</td>
+  <td>{e.thSeat}</td>
+  
+  <td>
+  <button type="button" className="btn btn-primary" style={{padding:"0px 20px"}}>Edit</button> &nbsp;
+  <button type="button" className="btn btn-danger"  style={{padding:"0px 10px"}} onClick={()=>handledelete(e._id)}>Delete</button>
+  </td>
+</tr>
+
+</tbody>
+})}
+
+</table>
+</div>
+</div>
+<div className='col-md-6'>
+<Addmovies/>
+<br/>
+<div className='overflow-auto'>
+<table className='table'>
+<thead>
+<tr>
+  <th scope="col-1">#</th>
+  <th scope="col-4">Theater Name</th>
+  <th scope="col-4">Screen Name</th>
+  <th scope="col-2">Seat</th>
+  <th scope="col-1">Action</th>
+</tr>
+</thead>
+{details.map((e,i)=>{
+return <tbody>
+<tr>
+  <th scope="row">{i+1}</th>
+  <td>{e.thName}</td>
+  <td>{e.screen}</td>
+  <td>{e.thSeat}</td>
+  
+  <td>
+  <button type="button" className="btn btn-primary" style={{padding:"0px 20px"}}>Edit</button> &nbsp;
+  <button type="button" className="btn btn-danger"style={{padding:"0px 10px"}} onClick={()=>handledelete(e._id)}>Delete</button>
+  </td>
+</tr>
+
+</tbody>
+})}
+
+</table>
+</div>
+</div>
+</div>
+</div>
+
+}
 </div>
   )
 }

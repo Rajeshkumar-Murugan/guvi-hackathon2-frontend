@@ -3,11 +3,13 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
 import Header from './Header';
+import Loading from './Loading';
 
 
 function Theaterdata() {
 
     let [details,setDetails] =useState([])
+    const [isloading, setisloading] = useState(true)
 
     useEffect(() => {
         getData()
@@ -15,8 +17,10 @@ function Theaterdata() {
 
 let getData = async()=>{
     try {
-      let d = await axios.get(env.API_URL)
-    setDetails(d.data.data)
+      let thData = await axios.get(env.API_URL)
+      {thData?setisloading(false):setisloading(true)}
+
+    setDetails(thData.data.data)
     } catch (error) {
       console.log(error)
     }
@@ -39,6 +43,18 @@ let getData = async()=>{
     <div>
 
       <Header/>
+      {isloading ? 
+ <Loading/>
+:
+<div>
+<br/>
+  
+  <div className="container d-flex justify-content-between">
+  <h3>Show Details</h3>
+  <div><button className='btn btn-success'>Add Theater</button></div>
+  </div>
+  
+      <br/>
       <div className='overflow-auto'>
     <table className='table'>
   <thead>
@@ -74,7 +90,10 @@ let getData = async()=>{
  
 </table>
 </div>
+</div>
+}
     </div>
+    
         </>)
   
 }

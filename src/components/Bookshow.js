@@ -8,12 +8,14 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Modal from "react-bootstrap/Modal";
 import Header from "./Header";
 import './BookingShow.css'
+import Loading from './Loading';
 
 
 function Bookshow() {
   let params = useParams();
   let Navigate = useNavigate();
   const [movieTitle, setMovieTitle] = useState("");
+  const [isloading, setisloading] = useState(true)
 
   const [Theater, setTheater] = useState([]);
   const [SelectedDate, setSelectedDate] = useState(formatDate(new Date()));
@@ -41,6 +43,8 @@ function Bookshow() {
     try {
       let res = await axios.get("https://ticketbooking-server.herokuapp.com/movies/" + params.id);
       let moviedetails = res.data;
+      {moviedetails?setisloading(false):setisloading(true)}
+
       setDetails(moviedetails.data);
       setMovieTitle(res.data.data.moviename);
       
@@ -116,7 +120,9 @@ function Bookshow() {
   return (
     <div >
       <Header />
-
+      {isloading ? 
+ <Loading/>
+:
       <div className="container">
         <div className="row">
           <div className="col">
@@ -221,6 +227,7 @@ function Bookshow() {
           </Modal>
         </div>
       </div>
+}
     </div>
   );
 }

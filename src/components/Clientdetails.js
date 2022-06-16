@@ -3,11 +3,13 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
 import Header from './Header';
+import Loading from './Loading';
 
 function Clientdetails() {
 
   let [details,setDetails] =useState([])
   let Navigate = useNavigate()
+  const [isloading, setisloading] = useState(true)
 
   //Fetching the data from server starts
   useEffect(() => {
@@ -18,9 +20,11 @@ function Clientdetails() {
   //Fetching using Axios
   let getData = async()=>{
     try {
-      let d = await axios.get(env.API_URL+"user")
+      let client = await axios.get(env.API_URL+"user")
+      {client?setisloading(false):setisloading(true)}
+
       // console.log(d)
-    setDetails(d.data.data)
+    setDetails(client.data.data)
     } catch (error) {
       // alert("Error occured while fetching the data please contact developer")
       console.log(error)
@@ -34,6 +38,9 @@ function Clientdetails() {
   return (
     <div>
       <Header/>
+      {isloading ? 
+ <Loading/>
+:
       <div className='overflow-auto'>
       <table className="table ">
   <thead>
@@ -64,6 +71,7 @@ function Clientdetails() {
   </tbody>
 </table>
 </div>
+}
     </div>
   )
 }

@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SignUp from './components/Signup';
 import Signin from './components/Signin';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CreateTheater from './components/CreateTheater';
 
 function App() {
   return (<>
@@ -23,6 +24,7 @@ function App() {
      <Route path='/Bookshow/:id' element={<Bookshow/>}></Route>
      <Route path='/Theaterdata/' element={<Theaterdata/>}></Route>
      <Route path='/Booking/:thName/' element={<Bookshow/>}></Route>
+     <Route path='/CreateTheater' element={<CreateTheater/>}></Route>
      <Route path='/' element={<Signin/>}></Route>
      <Route path='/Sign-up' element={<SignUp/>}></Route>
      </Routes>
