@@ -3,7 +3,6 @@ import axios from "axios";
 import env from "react-dotenv";
 import Header from "./Header";
 import Loading from "./Loading";
-import { Link } from "react-router-dom";
 import AddTheaters from "./AddTheaters";
 
 function Theaterdata() {

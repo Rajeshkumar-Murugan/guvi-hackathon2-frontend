@@ -4,8 +4,6 @@ import env from "react-dotenv";
 import { React, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Addmovies from "./Addmovies";
-import Header from "./Header";
 import { toast } from 'react-toastify';
 
 function AddTheaters() {
