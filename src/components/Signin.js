@@ -95,13 +95,9 @@ function Signin() {
        
         try {
           let res =  await axios.post(env.API_URL+'users/forget-password',object)
-          
-          if(res == 'Please check mail to reset password'){
+                    
             toast.success(res.data.message)
-          }
-          else{
-            toast.error(res.data.message)
-          }
+          
         } catch (error) {
           alert("error occured please contact the developer")
           console.log(error)
