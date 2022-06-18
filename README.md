@@ -18,7 +18,10 @@
 2.	Verification link with validity of 5mins will be sent to respective user mail to verify the account
 3.	On the verification mail select “Click Here” link to verify the account
 4.	To generate new verification link user should enter email ID and Password in Sign in page
-5.	If client try to signup with existing user email ID then an error message as “” should get displayed
+5.	If client try to signup with existing user email ID then an error message as “User already exist” should get displayed
+6.	If client try to signin wihtout verifying the account then an error message as "Account is not activated. Please check your mail to verify your account" should get displayed
+7.	If client try to login with invalid password then an error message as "Invalid Password" should get displayed
+8.	If client try to login with without signup an error message as "User doesnot exist" should get displayed
 
 ![1. Sign Up](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/Sign%20Up.png)
 
