@@ -30,3 +30,7 @@
 ![2. Verification](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/2.%20Verification%20Email.png)
 
 1.1 Verification Mail Mockup
+
+### Admin Portal
+1. Only admin have the access to Add/Edit/Delete/Update operation for "Theater, Movies, Shows" database
+
