@@ -25,6 +25,8 @@
 
 ![1. Sign Up](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/Sign%20Up.png)
 
+1.0 SignIn and Signup Mockup 
+
 ![2. Verification](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/2.%20Verification%20Email.png)
 
-
+1.1 Verification Mail Mockup
