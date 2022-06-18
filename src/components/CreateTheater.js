@@ -20,12 +20,14 @@ function CreateTheater() {
         initialValues:{ 
           TheaterName:'',
           ScreenNames:'',
-          TheaterLocation:'',                  
+          TotalSeat:''
+          
+          ,                  
         },
         validationSchema: yup.object({
         TheaterName:yup.string().required('Theater Name is required'),
         ScreenNames:yup.string().required('Screen Name is required'),
-        TheaterLocation:yup.string().required('Theater Location is required'),
+        TotalSeat:yup.string().required('Seat count is required'),
        
         }),
         onSubmit:values=>{
@@ -112,11 +114,11 @@ let getData = async()=>{
                 </div>
                 <div className="col-md-3">
                         
-                    <input id="TheaterLocation" name="TheaterLocation" type="textrea"
-                                className="form-control" placeholder='Enter Theater Location'
+                    <input id="TotalSeat" name="TotalSeat" type="Number"
+                                className="form-control" placeholder='Enter Total Seats'
                                 onChange={formik.handleChange}
-                                value={formik.values.TheaterLocation}/>
-                        {formik.touched.TheaterLocation && formik.errors.TheaterLocation?(<div style={{color:"red"}}>{formik.errors.TheaterLocation}</div>):null}
+                                value={formik.values.TotalSeat}/>
+                        {formik.touched.TotalSeat && formik.errors.TotalSeat?(<div style={{color:"red"}}>{formik.errors.TotalSeat}</div>):null}
 
                 </div>
             

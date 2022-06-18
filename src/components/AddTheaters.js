@@ -204,7 +204,7 @@ function AddTheaters() {
 
           <div className="col-12">
             <label htmlFor="thDate" className="form-label">
-              Date
+              Show End Date
             </label>
 
             <input

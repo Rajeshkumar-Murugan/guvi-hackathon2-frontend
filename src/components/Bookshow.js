@@ -59,11 +59,12 @@ function Bookshow() {
       let res = await axios.get("https://ticketbooking-server.herokuapp.com/");
       let details = res.data.data;
       let TheaterAvailable = details
+
         .filter((el) => el.moviename == movieTitle)
         .map((e) => {
           return e;
         });
-
+        console.log(TheaterAvailable)
      
       setTheater(TheaterAvailable);
      
@@ -91,8 +92,21 @@ function Bookshow() {
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
 
-    return [day, month, year].join("/");
+    return [year,month,day].join("-");
   }
+
+  function IndainDateFormat(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [day,month,year].join("/");
+  }
+
 
   function getDatesInRange(startDate, endDate) {
     const date = new Date(startDate.getTime());
@@ -107,12 +121,8 @@ function Bookshow() {
     return dates;
   }
 
-  var date = new Date("08-02-2020");
-  date.setDate(date.getDate() + 7);
-
-
   const d1 = new Date();
-  const d2 = new Date("2022-06-30");
+  const d2 = new Date();
   d2.setDate(d1.getDate() + 7);
 
 
@@ -156,7 +166,7 @@ function Bookshow() {
                       variant="secondary"
                       onClick={() => setSelectedDate(formatDate(el))}
                     >
-                      {formatDate(el)}
+                      {IndainDateFormat(el)}
                     </Button>
                     &nbsp;
                   </div>
@@ -166,14 +176,15 @@ function Bookshow() {
           </ButtonGroup>
         </div>
         <div className="row overflow-auto">
-          {Theater.filter((el) => formatDate(el.thDate) == SelectedDate).map(
+          {
+          
+          Theater.filter((el) => formatDate(el.thDate) >= SelectedDate).map(
             (el, i) => {
-              
               return (
                 <div className="row">
                   <div className="card-body">
                     <div className="col">
-                      {el.thName} - {el.screen} 
+                      {el.thName} - {el.screen}
                       <br />
                       <br />
                       {TheaterTimings(el.thTime).map((e) => {
@@ -181,7 +192,8 @@ function Bookshow() {
                           <>
                             <button type="button" className="btn btn-success" onClick={()=>{
                                 handleShow()
-                            setTheaterSeat(el.thSeat)}
+                            setTheaterSeat(el.thSeat)
+                          }
                              } >
                               {e}
                             </button>
