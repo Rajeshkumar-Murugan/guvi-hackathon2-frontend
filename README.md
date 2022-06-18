@@ -34,3 +34,4 @@
 ### Admin Portal
 1. Only admin have the access to Add/Edit/Delete/Update operation for "Theater, Movies, Shows" database
 
+![2. Admin Menus](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/2.%20Admin%20Menus.png)
