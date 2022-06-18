@@ -27,3 +27,5 @@
 5.	If client try to signup with existing user email ID then an error message as “” should get displayed
 
 ![1. Sign Up](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/Sign%20Up.png)
+
+![2. Verification](https://github.com/Rajeshkumar-Murugan/guvi-hackathon2-frontend/blob/main/Documentation/Verification%20Email.png)
