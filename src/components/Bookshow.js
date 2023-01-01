@@ -9,6 +9,7 @@ import Modal from "react-bootstrap/Modal";
 import Header from "./Header";
 import './BookingShow.css'
 import Loading from './Loading';
+import env from "react-dotenv";
 
 
 function Bookshow() {
@@ -41,7 +42,7 @@ function Bookshow() {
 
   let getData = async () => {
     try {
-      let res = await axios.get("https://ticketbooking-server.herokuapp.com/movies/" + params.id);
+      let res = await axios.get(env.API_URL+"movies/" + params.id);
       let moviedetails = res.data;
       {moviedetails?setisloading(false):setisloading(true)}
 
@@ -56,7 +57,7 @@ function Bookshow() {
 
   let gettheater = async () => {
     try {
-      let res = await axios.get("https://ticketbooking-server.herokuapp.com/");
+      let res = await axios.get(env.API_URL);
       let details = res.data.data;
       let TheaterAvailable = details
 
